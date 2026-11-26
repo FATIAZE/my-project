@@ -380,6 +380,393 @@ summary::-webkit-details-marker { display: none; }
 .carton-dialog form { display: flex; justify-content: flex-end; margin-block-end: 16px; }
 .carton-dialog img { inline-size: 100%; block-size: auto; }
 
+/* Benefits and product cards */
+.benefits {
+  background: #fff0b8 var(--grain);
+  border-block: 1px solid #d6a94055;
+}
+.benefits-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 38px);
+  margin-block-end: clamp(24px, 4vw, 48px);
+  text-align: center;
+}
+.benefits-heading h2 {
+  font-size: clamp(2.25rem, 6.3vw, 5.5rem);
+}
+.benefits-spark {
+  flex: 0 0 auto;
+  inline-size: clamp(42px, 8vw, 94px);
+  stroke: var(--gold-ink);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  transform: rotate(8deg);
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+.benefit-card {
+  min-inline-size: 0;
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 10px;
+  padding: clamp(14px, 2vw, 24px);
+  border: 1px solid #17432b22;
+  border-radius: 22px 22px 31px 22px;
+  background: #fffaf1;
+  transition: background-color 270ms var(--ease), box-shadow 270ms var(--ease);
+}
+.benefit-card:nth-child(even) { background: #f8ffe9; }
+.benefit-icon {
+  display: grid;
+  place-items: center;
+  inline-size: 53px;
+  block-size: 53px;
+  margin-block-end: 2px;
+  border-radius: 47% 58% 51% 56%;
+  background: #edbd5f;
+  color: #183c27;
+  transform: rotate(-7deg);
+  transition: transform 350ms var(--ease);
+}
+.benefit-card:nth-child(even) .benefit-icon { background: #c5dc96; }
+.benefit-icon svg { inline-size: 25px; block-size: 25px; }
+.benefit-card h3 {
+  font-size: 1.13rem;
+  line-height: 1.17;
+  overflow-wrap: anywhere;
+}
+.benefit-card p {
+  color: var(--ink-soft);
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  margin-block: 28px clamp(50px, 7vw, 88px);
+}
+.product-card {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: #fffaf0;
+  border: 1px solid #dcccaa;
+  border-radius: 25px;
+  overflow: hidden;
+  transition: box-shadow 300ms var(--ease), border-color 300ms var(--ease);
+}
+.product-card-media {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #f7e6c7;
+}
+.product-card-media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transition: transform 500ms var(--ease);
+}
+.product-card-carton .product-card-media { background: white; }
+.product-card-carton .product-card-media img {
+  padding: 12px;
+  object-fit: contain;
+}
+.product-card-content {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: clamp(14px, 1.65vw, 22px);
+}
+.product-card-content h3 {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 2.4vw, 2.05rem);
+  letter-spacing: -.025em;
+  line-height: 1.05;
+  text-wrap: pretty;
+}
+.product-card-facts {
+  display: grid;
+  gap: 0;
+  font-size: .875rem;
+}
+.product-card-facts div {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: minmax(0, 1fr);
+  border-block-start: 1px solid #dcccaa;
+  padding-block: 7px;
+}
+.product-card-facts dt { color: var(--ink-soft); }
+.product-card-facts dd {
+  color: var(--green);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.product .product-spec-heading {
+  padding-block-start: clamp(22px, 4vw, 48px);
+  border-block-start: 1px solid var(--line);
+}
+.product-spec-heading h3 {
+  font-family: var(--display);
+  font-size: clamp(1.85rem, 3.9vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: 1.04;
+}
+[lang="ar"] :is(.product-card-content, .product-spec-heading) h3 {
+  letter-spacing: normal;
+  line-height: 1.25;
+}
+@media (hover: hover) {
+  .benefit-card:hover {
+    background: #fff;
+    box-shadow: 0 9px 17px #65512412;
+  }
+  .benefit-card:hover .benefit-icon { transform: rotate(5deg) scale(1.07); }
+  .product-card:hover {
+    border-color: #bd9a51;
+    box-shadow: 0 10px 22px #583e1d18;
+  }
+  .product-card:hover .product-card-media img { transform: scale(1.055); }
+}
+@media (max-width: 960px) {
+  .benefits-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .product-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 580px) {
+  .benefits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefits-heading { align-items: flex-start; }
+  .benefit-card:last-child { grid-column: span 2; }
+  .benefit-card h3 { font-size: 1rem; }
+  .product-card-media { aspect-ratio: 5 / 6; }
+  .product-card-content { padding: 12px; }
+}
+@media (max-width: 359px) {
+  .benefits-grid { grid-template-columns: minmax(0, 1fr); }
+  .benefit-card:last-child { grid-column: auto; }
+  .product-gallery { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .benefit-card:hover .benefit-icon,
+  .product-card:hover .product-card-media img { transform: none; }
+}
+
+/* Palm grove, sunlight and harvest motion */
+:root {
+  --sun: #ffcf48;
+  --sun-light: #fff0a3;
+  --leaf: #195e3c;
+  --meadow: #e3ebbe;
+}
+
+.hero {
+  grid-template-columns: minmax(0, .93fr) minmax(0, 1.07fr);
+  padding-block-end: 24px;
+}
+
+.hero-content { position: relative; z-index: 1; }
+.hero h1 { background: none; color: var(--green); }
+[dir="rtl"] .hero h1 { background-image: none; }
+
+.hero .eyebrow {
+  width: fit-content;
+  color: var(--green);
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--sun-light);
+}
+
+.hero .eyebrow .diamond { background: var(--leaf); }
+.hero-quote {
+  min-block-size: 52px;
+  padding-inline: 16px;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--green-dark);
+}
+.hero-quote:hover { background: var(--sun-light); color: var(--green-dark); }
+
+.hero-art {
+  aspect-ratio: 1.05;
+  border-radius: 32px;
+  border-color: #a6bd73;
+  background: var(--meadow) var(--grain);
+}
+
+.hero-arch {
+  position: absolute;
+  inset: 7% 10% 0;
+  border-radius: 48% 48% 12% 12% / 44% 44% 9% 9%;
+  border: 1px solid #9ab26b;
+  background: #c8dc92 var(--grain);
+}
+
+.hero-arch::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: inherit;
+  border: 1px solid #f4f1cd99;
+}
+
+.hero-sun {
+  position: absolute;
+  left: 77%;
+  top: 72%;
+  z-index: 1;
+  inline-size: min(26%, 160px);
+  aspect-ratio: 1;
+  border: 1px solid #e4a522;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 8px #ffe47877, 0 0 40px #ffc22796;
+  transform: translate(-50%, -50%);
+}
+
+.hero-sun::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #fff9ccaa;
+  border-radius: 50%;
+}
+
+.hero-tree {
+  position: absolute;
+  inset-block: 1% 2%;
+  left: 51%;
+  z-index: 2;
+  aspect-ratio: 2 / 3;
+  transform: translateX(-50%);
+}
+
+.hero-photo { width: 100%; height: 100%; object-fit: contain; }
+.hero-origin { position: absolute; top: 47%; left: 63%; inline-size: 1px; block-size: 1px; }
+.hero-palm { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-art.has-media .hero-palm { visibility: hidden; }
+
+.hero-harvest {
+  position: absolute;
+  left: 2%;
+  bottom: 9%;
+  z-index: 3;
+  width: min(34%, 198px);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.hero-harvest img { width: 100%; height: auto; }
+.hero-art figcaption { z-index: 4; border: 0; background: #fffaf0ed; }
+
+.hero-spark { position: absolute; color: var(--leaf); z-index: 1; line-height: 1; }
+.hero-spark-large { top: 11%; right: 11%; font-size: 2.25rem; }
+.hero-spark-small { top: 28%; left: 10%; font-size: 1.25rem; }
+
+.hero-trace {
+  position: absolute;
+  bottom: 4%;
+  right: 4%;
+  z-index: 3;
+  width: 23%;
+  color: #35643a;
+  transform: rotate(22deg);
+}
+
+.date-grain {
+  display: block;
+  width: 100%;
+  aspect-ratio: 346 / 303;
+  background: url("assets/bol des dattes (2).png") 99.27% 48.08% / 655.49% 486.47% no-repeat;
+  clip-path: polygon(5% 25%, 8% 14%, 15% 10%, 24% 4%, 34% 4%, 51% 13%, 66% 24%, 81% 39%, 91% 56%, 96% 68%, 96% 81%, 91% 91%, 81% 96%, 67% 96%, 51% 91%, 37% 83%, 24% 72%, 16% 59%, 9% 44%, 5% 33%);
+}
+
+.hero-seed {
+  position: absolute;
+  top: 46%;
+  left: 63%;
+  inline-size: clamp(16px, 3vw, 28px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-seed-one { --drift: 54px; --drop: 130px; --twist: 52deg; --delay: 320ms; left: 48%; }
+.hero-seed-two { --drift: -44px; --drop: 140px; --twist: -56deg; --delay: 740ms; left: 41%; top: 43%; }
+.hero-seed-three { --drift: 32px; --drop: 102px; --twist: 36deg; --delay: 980ms; top: 42%; }
+
+.hero-art.has-media .hero-seed { animation: grove-drop 2300ms var(--delay) var(--ease) both; }
+@keyframes grove-drop {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-12deg) scale(.76); }
+  14% { opacity: 1; }
+  68% { opacity: .96; transform: translate3d(calc(var(--drift) * .68), calc(var(--drop) * .48), 0) rotate(calc(var(--twist) * .7)); }
+  100% { opacity: 0; transform: translate3d(var(--drift), var(--drop), 0) rotate(var(--twist)); }
+}
+
+.hero-fruit .date-grain { display: none; }
+.hero-art.has-media .hero-fruit { display: block; z-index: 3; top: 72%; left: 77%; width: clamp(28px, 5vw, 56px); }
+.hero-art.has-media .hero-fruit .date-grain { display: block; }
+.hero-art.has-media .hero-fruit svg { display: none; }
+
+.flight {
+  width: clamp(28px, 5.3vw, 64px);
+  z-index: 4;
+  filter: drop-shadow(2px 5px 4px #452d1e40);
+}
+
+.landing-mark { inline-size: 48px; block-size: 48px; background: var(--sun-light); border-color: #d8a84d; }
+.landing-mark .landed-fruit { inline-size: 25px; block-size: auto; }
+.landing-fallback { display: none; }
+
+.trust { background: var(--leaf); border-radius: 24px; }
+.trust .icon { color: var(--sun); }
+.tagline { background-color: var(--leaf); }
+.tagline-ornament { color: var(--sun); font-size: 2.25rem; }
+.contact .button-sand { background: var(--sun); }
+.contact .button-sand:hover { background: var(--sun-light); }
+.domain-image { border-radius: 40px 40px 20px 20px; }
+
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 560ms var(--ease), transform 560ms var(--ease),
+    background-color 270ms var(--ease), box-shadow 270ms var(--ease), border-color 300ms var(--ease);
+}
+.reveal-pending.is-revealed, .reveal-pending:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .hero-art { aspect-ratio: .96; border-radius: 24px; }
+  .hero-sun { box-shadow: 0 0 0 4px #ffe47891, 0 0 24px #ffc22789; }
+  .hero-sun::before { inset: 4px; }
+}
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero-content h1 { max-inline-size: 100%; }
+  .hero-art { aspect-ratio: 1; }
+  .hero-spark-large { font-size: 1.875rem; }
+  .hero-spark-small { font-size: 1rem; }
+  .domain-image { border-radius: 24px 24px 16px 16px; }
+  .hero-seed-one { --drift: 35px; --drop: 77px; }
+  .hero-seed-two { --drift: -30px; --drop: 96px; }
+  .hero-seed-three { --drift: 22px; --drop: 74px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-seed { display: none; }
+  .reveal-pending { opacity: 1; transform: none; }
+}
+
 /* Embedded typefaces are distributed under the following licenses.
 
 Cormorant Garamond

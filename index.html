@@ -83,7 +83,24 @@
           <a class="button hero-quote" data-whatsapp href="https://wa.me/212661236034?text=Bonjour%2C%20je%20souhaite%20recevoir%20votre%20catalogue%20et%20un%20devis%20pour%20vos%20dattes%20Medjool." target="_blank" rel="noopener"><svg class="icon solid" aria-hidden="true"><use href="#i-wa"></use></svg><span data-i18n="quote">Demander un devis</span></a>
           <a class="hero-scroll" href="#domaine"><svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg><span data-i18n="heroScroll">Découvrir le domaine</span></a>
         </div>
-        <figure class="hero-art" data-attr="aria-label:artLabel" aria-label="Illustration d’un palmier dattier dans une oasis marocaine">
+        <figure class="hero-art" data-media data-attr="aria-label:artLabel" aria-label="Palmier dattier et dattes Medjool">
+          <span class="hero-arch" aria-hidden="true"></span>
+          <span class="hero-sun" aria-hidden="true"></span>
+          <div class="hero-tree" aria-hidden="true">
+            <img class="hero-photo" data-src="assets/PALMERIE HERO.png" alt="" hidden decoding="async" fetchpriority="high" width="1024" height="1536">
+            <span class="hero-origin"></span>
+            <span class="hero-seed hero-seed-one"><span class="date-grain"></span></span>
+            <span class="hero-seed hero-seed-two"><span class="date-grain"></span></span>
+            <span class="hero-seed hero-seed-three"><span class="date-grain"></span></span>
+          </div>
+          <div class="hero-harvest" data-media aria-hidden="true">
+            <img data-src="assets/DATTES.png" alt="" hidden decoding="async" width="2268" height="1474">
+          </div>
+          <span class="hero-spark hero-spark-large" aria-hidden="true">✦</span>
+          <span class="hero-spark hero-spark-small" aria-hidden="true">✧</span>
+          <svg class="hero-trace" viewBox="0 0 148 98" fill="none" aria-hidden="true">
+            <path d="M5 78c36 9 66-4 74-26 7-20-20-31-29-12-9 19 30 34 94-15m-20 0 20 0-8 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <svg class="hero-palm" viewBox="0 0 600 620" width="600" height="620" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <pattern id="palm-grain" width="7" height="7" patternUnits="userSpaceOnUse">
@@ -934,7 +951,7 @@
   <path d="M28.5 487.2h0.5" stroke="#78513b" stroke-width=".7" stroke-linecap="round" opacity="0.28"/>
   <path d="M503.3 541.0h1.1" stroke="#78513b" stroke-width=".7" stroke-linecap="round" opacity="0.43"/>
 </svg>
-          <span class="hero-fruit" aria-hidden="true"><svg viewBox="0 0 64 90"><use href="#i-date"></use></svg></span>
+          <span class="hero-fruit" aria-hidden="true"><span class="date-grain"></span><svg viewBox="0 0 64 90"><use href="#i-date"></use></svg></span>
           <figcaption><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg><span data-i18n="artCaption">Boudnib, Errachidia</span></figcaption>
         </figure>
       </section>
@@ -946,7 +963,7 @@
       </ul>
 
       <section id="domaine" class="domain section-pad shell">
-        <div class="domain-image artwork" data-media>
+        <div class="domain-image artwork" data-media data-defer-media>
           <img data-src="assets/L'oasis.png" data-src-fallback="assets/l-oasis.png" data-attr="alt:domainImageAlt" alt="Une palmeraie dans le paysage oasien de Boudnib" hidden decoding="async" width="800" height="650">
           <svg class="placeholder-illustration" viewBox="0 0 520 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <circle cx="260" cy="153" r="91" fill="#d9a454" opacity=".55"/>
@@ -963,12 +980,12 @@
           <h2 data-i18n="domainTitle">Notre domaine à Boudnib</h2>
           <p class="lede" data-i18n="domainText">Boudnib donne son nom à notre domaine. Cette oasis de la province d’Errachidia, dans le sud du Maroc, est le terroir de nos dattes Medjool.</p>
           <div class="domain-location">
-            <span class="landing-mark" aria-hidden="true"><svg class="landed-fruit" viewBox="0 0 64 90"><use href="#i-date"></use></svg></span>
+            <span class="landing-mark" aria-hidden="true"><span class="landed-fruit date-grain"></span><svg class="landing-fallback" viewBox="0 0 64 90"><use href="#i-date"></use></svg></span>
             <span data-i18n="domainNote">Boudnib, Errachidia, Maroc</span>
           </div>
         </div>
       </section>
-      <div class="flight" aria-hidden="true"><svg viewBox="0 0 64 90"><use href="#i-date"></use></svg></div>
+      <div class="flight" aria-hidden="true"><span class="date-grain"></span></div>
     </div>
 
     <section class="tagline" aria-label="De Boudnib à votre marché">
@@ -978,15 +995,116 @@
       </div>
     </section>
 
-    <section id="medjool" class="product section-pad shell">
+    <section id="atouts" class="benefits section-pad" aria-labelledby="benefits-title">
+      <div class="shell">
+        <div class="section-heading benefits-heading">
+          <h2 id="benefits-title" data-i18n="benefitsTitle">Pourquoi nous choisir&nbsp;?</h2>
+          <svg class="benefits-spark" viewBox="0 0 75 56" aria-hidden="true" fill="none">
+            <path d="M37 2c0 15 10 25 23 26-12 1-23 11-23 25-1-14-9-24-24-25C27 26 36 17 37 2Z"/>
+            <path d="M69 5v12M63 11h12M6 38v15M0 45h13"/>
+          </svg>
+        </div>
+        <ul class="benefits-grid">
+          <li class="benefit-card">
+            <span class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg></span>
+            <h3 data-i18n="benefitOrigin">Boudnib, Maroc</h3>
+            <p data-i18n="benefitOriginText">Des dattes issues de la région de Boudnib.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#i-fruit"></use></svg></span>
+            <h3 data-i18n="benefitVariety">Dattes Medjool</h3>
+            <p data-i18n="benefitVarietyText">Une variété proposée en plusieurs calibres.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5 10 16l8-8M12 2.5l3.1 2.2 3.8.5.7 3.8 2 3-2 3-.7 3.8-3.8.5-3.1 2.2-3.1-2.2-3.8-.5-.7-3.8-2-3 2-3 .7-3.8 3.8-.5Z"/></svg></span>
+            <h3 data-i18n="benefitSelection">Sélection attentive</h3>
+            <p data-i18n="benefitSelectionText">Les dattes sont triées par poids.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#i-box"></use></svg></span>
+            <h3 data-i18n="benefitPacking">Conditionnement adapté</h3>
+            <p data-i18n="benefitPackingText">Un carton de 1 kg pour les commandes professionnelles.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a6 6 0 0 1-6 6H9l-5 3v-4.8A6 6 0 0 1 3 11.5v-.7a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6ZM8 11.3h.1m3.85 0h.1m3.85 0h.1"/></svg></span>
+            <h3 data-i18n="benefitTrade">Partenariat direct B2B</h3>
+            <p data-i18n="benefitTradeText">Échangez directement avec le domaine pour votre devis.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="medjool" class="product section-pad shell" aria-labelledby="products-title">
       <div class="section-heading">
         <p class="eyebrow"><span class="diamond" aria-hidden="true"></span><span data-i18n="productKicker">Nos dattes Medjool</span></p>
-        <h2 data-i18n="productTitle">Six calibres, un carton de 1 kg</h2>
+        <h2 id="products-title" data-i18n="galleryTitle">Nos produits</h2>
+        <p class="lede" data-i18n="galleryText">Découvrez quelques calibres de Medjool et notre carton de 1 kg. Les photos de dattes illustrent la variété Medjool.</p>
+      </div>
+      <div class="product-gallery">
+        <article class="product-card">
+          <div class="product-card-media">
+            <img src="assets/bol des dattes (2).png" alt="Dattes Medjool dans un bol" data-attr="alt:galleryPhotoAlt" width="2268" height="1474" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <h3><span data-i18n="galleryMedjool">Dattes Medjool</span> <bdi>Medium</bdi></h3>
+            <dl class="product-card-facts">
+              <div><dt data-i18n="galleryGrade">Calibre</dt><dd><bdi>Medium</bdi></dd></div>
+              <div><dt data-i18n="calibreUnit">Poids par datte</dt><dd><bdi>15–18 g</bdi></dd></div>
+              <div><dt data-i18n="galleryPacking">Conditionnement</dt><dd><bdi>{{conditionnement}}</bdi></dd></div>
+              <div><dt data-i18n="galleryAvailability">Disponibilité</dt><dd><bdi>{{disponibilite}}</bdi></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card-media">
+            <img src="assets/bol des dattes (4).png" alt="Dattes Medjool dans un bol" data-attr="alt:galleryPhotoAlt" width="2268" height="1474" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <h3><span data-i18n="galleryMedjool">Dattes Medjool</span> <bdi>Large</bdi></h3>
+            <dl class="product-card-facts">
+              <div><dt data-i18n="galleryGrade">Calibre</dt><dd><bdi>Large</bdi></dd></div>
+              <div><dt data-i18n="calibreUnit">Poids par datte</dt><dd><bdi>18–22 g</bdi></dd></div>
+              <div><dt data-i18n="galleryPacking">Conditionnement</dt><dd><bdi>{{conditionnement}}</bdi></dd></div>
+              <div><dt data-i18n="galleryAvailability">Disponibilité</dt><dd><bdi>{{disponibilite}}</bdi></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card-media">
+            <img src="assets/bol des dattes.png" alt="Dattes Medjool dans un bol" data-attr="alt:galleryPhotoAlt" width="2230" height="1474" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <h3><span data-i18n="galleryMedjool">Dattes Medjool</span> <bdi>Jumbo</bdi></h3>
+            <dl class="product-card-facts">
+              <div><dt data-i18n="galleryGrade">Calibre</dt><dd><bdi>Jumbo</bdi></dd></div>
+              <div><dt data-i18n="calibreUnit">Poids par datte</dt><dd><bdi>22–24 g</bdi></dd></div>
+              <div><dt data-i18n="galleryPacking">Conditionnement</dt><dd><bdi>{{conditionnement}}</bdi></dd></div>
+              <div><dt data-i18n="galleryAvailability">Disponibilité</dt><dd><bdi>{{disponibilite}}</bdi></dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="product-card product-card-carton">
+          <div class="product-card-media">
+            <img src="assets/folding carton__DOMAINE DE BOUDNIB.png" alt="Carton original Domaine de Boudnib pour les dattes Medjool, 1 kg" data-attr="alt:cartonAlt" width="5551" height="6496" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <h3 data-i18n="galleryCarton">Carton Medjool</h3>
+            <dl class="product-card-facts">
+              <div><dt data-i18n="galleryGrade">Calibre</dt><dd><bdi>{{calibre}}</bdi></dd></div>
+              <div><dt data-i18n="galleryWeight">Poids</dt><dd><bdi>1 kg</bdi></dd></div>
+              <div><dt data-i18n="galleryPacking">Conditionnement</dt><dd data-i18n="cartonLabel">Carton de 1 kg</dd></div>
+              <div><dt data-i18n="galleryAvailability">Disponibilité</dt><dd><bdi>{{disponibilite}}</bdi></dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+      <div class="section-heading product-spec-heading">
+        <h3 data-i18n="productTitle">Six calibres, un carton de 1 kg</h3>
         <p class="lede" data-i18n="productText">Choisissez le calibre adapté à votre assortiment et découvrez le carton de 1 kg destiné aux professionnels.</p>
       </div>
       <div class="product-grid">
         <figure class="carton">
-          <div class="carton-art artwork" data-media>
+          <div class="carton-art artwork" data-media data-defer-media>
             <img data-src="assets/folding carton__DOMAINE DE BOUDNIB.png" data-src-fallback="assets/carton-1kg.png|assets/folding-carton-domaine-de-boudnib-2.png" data-attr="alt:cartonAlt" alt="Carton original Domaine de Boudnib pour les dattes Medjool, 1 kg" hidden decoding="async" width="850" height="650">
             <div class="carton-placeholder" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><use href="#i-box"></use></svg>
@@ -1133,7 +1251,7 @@
     "heroTitle": "Proposez à vos clients des Medjool de Boudnib",
     "heroText": "Des dattes Medjool marocaines en carton de 1 kg pour les importateurs, grossistes et distributeurs.",
     "heroScroll": "Découvrir le domaine",
-    "artLabel": "Illustration d’un palmier dattier dans une oasis marocaine",
+    "artLabel": "Palmier dattier et dattes Medjool",
     "artCaption": "Boudnib, Errachidia",
     "trustOrigin": "Boudnib, Maroc",
     "trustVariety": "Dattes Medjool",
@@ -1196,7 +1314,27 @@
     "footerLocation": "Boudnib, Errachidia, Maroc",
     "footerTop": "Retour en haut",
     "cartonView": "Voir le carton en détail",
-    "cartonClose": "Fermer l’aperçu"
+    "cartonClose": "Fermer l’aperçu",
+    "benefitsTitle": "Pourquoi nous choisir ?",
+    "benefitOrigin": "Boudnib, Maroc",
+    "benefitOriginText": "Des dattes issues de la région de Boudnib.",
+    "benefitVariety": "Dattes Medjool",
+    "benefitVarietyText": "Une variété proposée en plusieurs calibres.",
+    "benefitSelection": "Sélection attentive",
+    "benefitSelectionText": "Les dattes sont triées par poids.",
+    "benefitPacking": "Conditionnement adapté",
+    "benefitPackingText": "Un carton de 1 kg pour les commandes professionnelles.",
+    "benefitTrade": "Partenariat direct B2B",
+    "benefitTradeText": "Échangez directement avec le domaine pour votre devis.",
+    "galleryTitle": "Nos produits",
+    "galleryText": "Découvrez quelques calibres de Medjool et notre carton de 1 kg. Les photos de dattes illustrent la variété Medjool.",
+    "galleryPhotoAlt": "Dattes Medjool dans un bol",
+    "galleryMedjool": "Dattes Medjool",
+    "galleryCarton": "Carton Medjool",
+    "galleryGrade": "Calibre",
+    "galleryWeight": "Poids",
+    "galleryPacking": "Conditionnement",
+    "galleryAvailability": "Disponibilité"
   },
   "en": {
     "skip": "Skip to content",
@@ -1216,7 +1354,7 @@
     "heroTitle": "Offer your customers Medjool dates from Boudnib",
     "heroText": "Moroccan Medjool dates in 1 kg cartons for importers, wholesalers and distributors.",
     "heroScroll": "Discover the domaine",
-    "artLabel": "Illustration of a date palm in a Moroccan oasis",
+    "artLabel": "A date palm and Medjool dates",
     "artCaption": "Boudnib, Errachidia",
     "trustOrigin": "Boudnib, Morocco",
     "trustVariety": "Medjool dates",
@@ -1279,7 +1417,27 @@
     "footerLocation": "Boudnib, Errachidia, Morocco",
     "footerTop": "Back to top",
     "cartonView": "View carton details",
-    "cartonClose": "Close preview"
+    "cartonClose": "Close preview",
+    "benefitsTitle": "Why choose us?",
+    "benefitOrigin": "Boudnib, Morocco",
+    "benefitOriginText": "Dates grown in the Boudnib region.",
+    "benefitVariety": "Medjool dates",
+    "benefitVarietyText": "One variety offered in several size grades.",
+    "benefitSelection": "Careful sorting",
+    "benefitSelectionText": "Dates are sorted by weight.",
+    "benefitPacking": "Trade packaging",
+    "benefitPackingText": "A 1 kg carton for wholesale orders.",
+    "benefitTrade": "Direct B2B partnership",
+    "benefitTradeText": "Speak directly with the domaine about your quote.",
+    "galleryTitle": "Our products",
+    "galleryText": "Explore a selection of Medjool size grades and our 1 kg carton. The date photos illustrate the Medjool variety.",
+    "galleryPhotoAlt": "Medjool dates in a bowl",
+    "galleryMedjool": "Medjool dates",
+    "galleryCarton": "Medjool carton",
+    "galleryGrade": "Grade",
+    "galleryWeight": "Weight",
+    "galleryPacking": "Packaging",
+    "galleryAvailability": "Availability"
   },
   "es": {
     "skip": "Ir al contenido",
@@ -1299,7 +1457,7 @@
     "heroTitle": "Ofrezca a sus clientes dátiles Medjool de Boudnib",
     "heroText": "Dátiles Medjool marroquíes en cajas de 1 kg para importadores, mayoristas y distribuidores.",
     "heroScroll": "Descubrir el dominio",
-    "artLabel": "Ilustración de una palmera datilera en el oasis de Boudnib",
+    "artLabel": "Palmera datilera y dátiles Medjool",
     "artCaption": "Boudnib, Errachidia",
     "trustOrigin": "Boudnib, Marruecos",
     "trustVariety": "Dátiles Medjool",
@@ -1362,7 +1520,27 @@
     "footerLocation": "Boudnib, Errachidia, Marruecos",
     "footerTop": "Volver arriba",
     "cartonView": "Ver el cartón en detalle",
-    "cartonClose": "Cerrar la vista previa"
+    "cartonClose": "Cerrar la vista previa",
+    "benefitsTitle": "¿Por qué elegirnos?",
+    "benefitOrigin": "Boudnib, Marruecos",
+    "benefitOriginText": "Dátiles cultivados en la región de Boudnib.",
+    "benefitVariety": "Dátiles Medjool",
+    "benefitVarietyText": "Una variedad disponible en distintos calibres.",
+    "benefitSelection": "Selección cuidadosa",
+    "benefitSelectionText": "Los dátiles se clasifican por peso.",
+    "benefitPacking": "Formato profesional",
+    "benefitPackingText": "Una caja de 1 kg para pedidos profesionales.",
+    "benefitTrade": "Colaboración directa B2B",
+    "benefitTradeText": "Hable directamente con el dominio sobre su presupuesto.",
+    "galleryTitle": "Nuestros productos",
+    "galleryText": "Explore una selección de calibres Medjool y nuestra caja de 1 kg. Las fotos muestran la variedad Medjool.",
+    "galleryPhotoAlt": "Dátiles Medjool en un bol",
+    "galleryMedjool": "Dátiles Medjool",
+    "galleryCarton": "Caja Medjool",
+    "galleryGrade": "Calibre",
+    "galleryWeight": "Peso",
+    "galleryPacking": "Embalaje",
+    "galleryAvailability": "Disponibilidad"
   },
   "ar": {
     "skip": "دوزو للمحتوى",
@@ -1382,7 +1560,7 @@
     "heroTitle": "قدموا لزبنائكم تمر Medjool من بودنيب",
     "heroText": "تمر Medjool مغربي فكارطون ديال 1 كيلو، للمستوردين وتجار الجملة والموزعين.",
     "heroScroll": "اكتاشفو الضيعة",
-    "artLabel": "رسمة ديال نخلة تمر فواحة مغربية",
+    "artLabel": "نخلة وتمر Medjool",
     "artCaption": "بودنيب، الرشيدية، المغرب",
     "trustOrigin": "بودنيب، المغرب",
     "trustVariety": "تمر Medjool",
@@ -1445,7 +1623,27 @@
     "footerLocation": "بودنيب، الرشيدية، المغرب",
     "footerTop": "رجعو للفوق",
     "cartonView": "شوف تفاصيل الكارطونة",
-    "cartonClose": "سدّ العرض"
+    "cartonClose": "سدّ العرض",
+    "benefitsTitle": "علاش تختارونا؟",
+    "benefitOrigin": "بودنيب، المغرب",
+    "benefitOriginText": "تمر مزروع فالمنطقة ديال بودنيب.",
+    "benefitVariety": "تمر Medjool",
+    "benefitVarietyText": "صنف واحد كنقدّموه بأحجام مختلفة.",
+    "benefitSelection": "فرز بعناية",
+    "benefitSelectionText": "كنفرزو التمر على حساب الوزن.",
+    "benefitPacking": "توضيب للمهنيين",
+    "benefitPackingText": "كارطونة ديال 1 كيلو للطلبات المهنية.",
+    "benefitTrade": "شراكة مهنية مباشرة",
+    "benefitTradeText": "هدرو معانا مباشرة على عرض الثمن ديالكم.",
+    "galleryTitle": "المنتوجات ديالنا",
+    "galleryText": "شوفو بعض الأحجام ديال تمر Medjool والكارطونة ديال 1 كيلو. التصاور كيبينو الصنف ديال Medjool.",
+    "galleryPhotoAlt": "تمر Medjool فزلافة",
+    "galleryMedjool": "تمر Medjool",
+    "galleryCarton": "كارطونة Medjool",
+    "galleryGrade": "الحجم",
+    "galleryWeight": "الوزن",
+    "galleryPacking": "التوضيب",
+    "galleryAvailability": "واش متوفّر"
   }
 }
   </script>

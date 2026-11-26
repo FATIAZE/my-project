@@ -78,7 +78,8 @@ function setupAsset(image) {
     if (nextSource < sources.length) image.src = sources[nextSource++];
   }
 
-  image.addEventListener("load", () => {
+  image.addEventListener("load", async () => {
+    await image.decode?.().catch(() => {});
     image.hidden = false;
     container.hidden = false;
     container.classList.add("has-media");
@@ -89,7 +90,9 @@ function setupAsset(image) {
 }
 
 const journey = document.querySelector(".journey");
-const palm = document.querySelector(".hero-palm");
+const heroArt = document.querySelector(".hero-art");
+const origin = document.querySelector(".hero-origin");
+const sun = document.querySelector(".hero-sun");
 const flight = document.querySelector(".flight");
 const landing = document.querySelector(".landing-mark");
 const tagline = document.querySelector(".tagline");
@@ -97,43 +100,49 @@ const anchors = [...document.querySelectorAll(".desktop-nav a[href^='#'], .mobil
 const destinations = [...new Set(anchors.map(link => link.hash))].map(hash => document.getElementById(hash.slice(1)));
 
 const clamp = value => Math.min(Math.max(0, value), 1);
+let releaseTime;
 const curve = (start, first, second, end, t) => {
   const remains = 1 - t;
   return remains ** 3 * start + 3 * remains ** 2 * t * first + 3 * remains * t ** 2 * second + t ** 3 * end;
 };
 
-function drawFlight(viewHeight) {
-  if (reducedMotion.matches) {
+function drawFlight(viewHeight, now) {
+  if (reducedMotion.matches || !heroArt.classList.contains("has-media")) {
     journey.classList.remove("motion-ready");
     return;
   }
 
-  const origin = palm.getBoundingClientRect();
+  releaseTime ??= now + 240;
+  const drop = clamp((now - releaseTime) / 2050);
+  const falling = drop ** 1.6;
   const stage = journey.getBoundingClientRect();
+  const source = origin.getBoundingClientRect();
+  const sunlight = sun.getBoundingClientRect();
   const target = landing.getBoundingClientRect();
-  const startX = origin.left + origin.width * 339 / 600 - stage.left;
-  const startY = origin.top + origin.height * 244 / 620 - stage.top;
+  const startX = source.left - stage.left;
+  const startY = source.top - stage.top;
+  const sunX = sunlight.left + sunlight.width / 2 - stage.left;
+  const sunY = sunlight.top + sunlight.height / 2 - stage.top;
   const endX = target.left + target.width / 2 - stage.left;
   const endY = target.top + target.height / 2 - stage.top;
-  const distance = endY - startY;
-  if (distance <= 0) {
-    journey.classList.remove("motion-ready");
-    return;
-  }
-
-  const visualStart = stage.top + startY;
+  const landDistance = endY - sunY;
+  const sunViewportY = stage.top + sunY;
   const offset = compactPage.matches ? content.scrollTop : window.scrollY;
-  const releaseLine = Math.min(viewHeight * .65, visualStart + offset);
-  const landingLine = viewHeight * .68;
-  const travel = Math.max(distance * .55, distance + releaseLine - landingLine);
-  const progress = clamp((releaseLine - visualStart) / travel);
-  const t = progress * progress * (3 - 2 * progress);
-  const bend = root.dir === "rtl" ? -1 : 1;
-  const x = curve(startX, startX + bend * 34, endX - bend * 32, endX, t);
-  const y = curve(startY, startY + distance * .12, startY + distance * .68, endY, t);
-  const rotation = 14 + bend * Math.sin(Math.PI * t) * 28 + t * 3;
-  flight.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${rotation}deg) scale(${1 - t * .15})`;
+  const scrollStart = Math.min(viewHeight * .72, sunViewportY + offset);
+  const travel = Math.max(1, landDistance * .55, landDistance + scrollStart - viewHeight * .67);
+  const scroll = clamp((scrollStart - sunViewportY) / travel);
+  const t = scroll * scroll * (3 - 2 * scroll);
+
+  const dropX = curve(startX, startX + (sunX - startX) * .16, sunX + 12, sunX, falling);
+  const dropY = curve(startY, startY + 4, sunY - (sunY - startY) * .48, sunY, falling);
+  const span = endX - sunX;
+  const x = curve(dropX, dropX + span * .16, endX - span * .12, endX, t);
+  const y = curve(dropY, dropY + landDistance * .18, endY - landDistance * .18, endY, t);
+  const rotation = -22 + 46 * falling - 29 * t + 22 * Math.sin(Math.PI * t);
+  const scale = (.62 + .38 * falling) * (1 - t * .34);
+  flight.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`;
   journey.classList.add("motion-ready");
+  if (drop < 1) scheduleFrame();
 }
 
 function highlightNavigation() {
@@ -147,10 +156,10 @@ function highlightNavigation() {
   }
 }
 
-function updateFrame() {
+function updateFrame(now) {
   frame = 0;
   const viewHeight = compactPage.matches ? content.clientHeight : window.innerHeight;
-  drawFlight(viewHeight);
+  drawFlight(viewHeight, now);
   if (words.length) {
     const rect = tagline.getBoundingClientRect();
     const progress = clamp((viewHeight * .9 - rect.top) / (Math.min(rect.height, viewHeight) * .74));
@@ -206,7 +215,35 @@ content.addEventListener("scroll", scheduleFrame, { passive: true });
 window.addEventListener("resize", scheduleFrame, { passive: true });
 if (document.fonts) document.fonts.ready.then(scheduleFrame);
 
-for (const asset of document.querySelectorAll("img[data-src]")) setupAsset(asset);
+const mediaObserver = "IntersectionObserver" in window ? new IntersectionObserver((entries, observer) => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    observer.unobserve(entry.target);
+    setupAsset(entry.target.querySelector("img[data-src]"));
+  }
+}, { rootMargin: "320px" }) : null;
+
+for (const asset of document.querySelectorAll("img[data-src]")) {
+  const deferred = asset.closest("[data-defer-media]");
+  if (mediaObserver && deferred) mediaObserver.observe(deferred);
+  else setupAsset(asset);
+}
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add("is-revealed");
+      observer.unobserve(entry.target);
+    }
+  }, { threshold: .07, rootMargin: "0px 0px 96px" });
+  for (const element of document.querySelectorAll(".benefit-card, .product-card, .domain-copy, .process-grid, .trade-steps, .faq-list")) {
+    if (element.getBoundingClientRect().top <= window.innerHeight) continue;
+    element.classList.add("reveal-pending");
+    revealObserver.observe(element);
+  }
+}
+
 setLanguage(language);
 
 const cartonZoom = document.querySelector(".carton-zoom");
