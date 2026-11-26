@@ -441,10 +441,10 @@
         <details class="locale">
           <summary class="locale-summary" data-attr="aria-label:language" aria-label="Langue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg><span id="language-code">FR</span><svg class="icon locale-chevron" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
           <div class="locale-list">
-            <button type="button" data-lang="fr" lang="fr" aria-pressed="true"><span class="flag" data-media><img data-src="DRAPEAU FR.png" alt="" hidden></span>Français</button>
-            <button type="button" data-lang="en" lang="en" aria-pressed="false"><span class="flag" data-media><img data-src="DRAPEAU UK.png" alt="" hidden></span>English</button>
-            <button type="button" data-lang="es" lang="es" aria-pressed="false"><span class="flag" data-media><img data-src="DRAPEAU SPAIN.png" alt="" hidden></span>Español</button>
-            <button type="button" data-lang="ar" lang="ar" dir="rtl" aria-pressed="false"><span class="flag" data-media><img data-src="DRAPEAU MAROC.png" alt="" hidden></span>الدارجة</button>
+            <button type="button" data-lang="fr" lang="fr" aria-pressed="true"><span class="flag" data-media><img data-src="DRAPEAU FR.png" data-src-fallback="assets/drapeau-fr.png|assets/DRAPEAU FR.png" alt="" hidden></span>Français</button>
+            <button type="button" data-lang="en" lang="en" aria-pressed="false"><span class="flag" data-media><img data-src="DRAPEAU UK.png" data-src-fallback="assets/drapeau-uk.png|assets/DRAPEAU UK.png" alt="" hidden></span>English</button>
+            <button type="button" data-lang="es" lang="es" aria-pressed="false"><span class="flag" data-media><img data-src="assets/drapeau-spain.png" data-src-fallback="assets/DRAPEAU SPAIN.png|DRAPEAU SPAIN.png" alt="" hidden></span>Español</button>
+            <button type="button" data-lang="ar" lang="ar" dir="rtl" aria-pressed="false"><span class="flag" data-media><img data-src="assets/drapeau-maroc.png" data-src-fallback="assets/DRAPEAU MAROC.png|DRAPEAU MAROC.png" alt="" hidden></span>الدارجة</button>
           </div>
         </details>
         <a class="button button-small nav-quote" data-whatsapp href="https://wa.me/212661236034?text=Bonjour%2C%20je%20souhaite%20recevoir%20votre%20catalogue%20et%20un%20devis%20pour%20vos%20dattes%20Medjool." target="_blank" rel="noopener"><svg class="icon solid" aria-hidden="true"><use href="#i-wa"></use></svg><span data-i18n="quote">Demander un devis</span></a>
@@ -1335,7 +1335,7 @@
 
       <section id="domaine" class="domain section-pad shell">
         <div class="domain-image artwork" data-media>
-          <img data-src="L'oasis.png" data-attr="alt:domainImageAlt" alt="Une palmeraie dans le paysage oasien de Boudnib" hidden decoding="async" width="800" height="650">
+          <img data-src="L'oasis.png" data-src-fallback="assets/l-oasis.png|assets/L'oasis.png" data-attr="alt:domainImageAlt" alt="Une palmeraie dans le paysage oasien de Boudnib" hidden decoding="async" width="800" height="650">
           <svg class="placeholder-illustration" viewBox="0 0 520 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <circle cx="260" cy="153" r="91" fill="#d9a454" opacity=".55"/>
             <g fill="none" stroke="#8a5433" stroke-width="1.1" opacity=".65">
@@ -1375,7 +1375,7 @@
       <div class="product-grid">
         <figure class="carton">
           <div class="carton-art artwork" data-media>
-            <img data-src="folding carton__DOMAINE DE BOUDNIB.png" data-src-fallback="assets/carton-1kg.png" data-attr="alt:cartonAlt" alt="Carton original Domaine de Boudnib pour les dattes Medjool, 1 kg" hidden decoding="async" width="850" height="650">
+            <img data-src="assets/folding-carton-domaine-de-boudnib-2.png" data-src-fallback="assets/carton-1kg.png|folding carton__DOMAINE DE BOUDNIB.png|assets/folding carton__DOMAINE DE BOUDNIB.png" data-attr="alt:cartonAlt" alt="Carton original Domaine de Boudnib pour les dattes Medjool, 1 kg" hidden decoding="async" width="850" height="650">
             <div class="carton-placeholder" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><use href="#i-box"></use></svg>
               <span>1 kg</span>
@@ -1398,7 +1398,7 @@
         </div>
       </div>
       <div class="product-foot">
-        <figure class="date-photo" data-media hidden><img data-src="DATTES.png" alt="" hidden decoding="async" width="600" height="400"></figure>
+        <figure class="date-photo" data-media hidden><img data-src="DATTES.png" data-src-fallback="assets/dattes.png|assets/DATTES.png" alt="" hidden decoding="async" width="600" height="400"></figure>
         <p data-i18n="productNote">Demandez les calibres disponibles pour votre commande.</p>
       </div>
     </section>
@@ -1912,18 +1912,20 @@
 
     function setupAsset(image) {
       const container = image.closest("[data-media]");
+      const sources = [image.dataset.src, ...(image.dataset.srcFallback ?? "").split("|").filter(Boolean)];
+      let nextSource = 0;
+      function loadNextSource() {
+        if (nextSource < sources.length) image.src = sources[nextSource++];
+      }
+
       image.addEventListener("load", () => {
         image.hidden = false;
         container.hidden = false;
         container.classList.add("has-media");
         scheduleFrame();
       });
-      image.addEventListener("error", () => {
-        if (image.dataset.srcFallback && !image.src.endsWith("/" + image.dataset.srcFallback)) {
-          image.src = image.dataset.srcFallback;
-        }
-      });
-      image.src = image.dataset.src;
+      image.addEventListener("error", loadNextSource);
+      loadNextSource();
     }
 
     const journey = document.querySelector(".journey");
